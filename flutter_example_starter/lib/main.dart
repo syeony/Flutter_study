@@ -1,7 +1,6 @@
 import 'package:flutter_example/animation/animation_menu.dart';
 import 'package:flutter_example/basic/basic_menu.dart';
 import 'package:flutter_example/button/button_menu.dart';
-import 'package:flutter_example/calculator.dart';
 import 'package:flutter_example/cupertino/cupertino_menu.dart';
 import 'package:flutter_example/dialog/dialog_menu_page.dart';
 import 'package:flutter_example/event/event_menu_page.dart';
@@ -153,15 +152,6 @@ class MenuPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => RealWorldMenuPage()),
-              );
-            },
-          ),
-          ListTile(
-            title: Text('12. 나만의계산기'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CalcApp()),
               );
             },
           ),

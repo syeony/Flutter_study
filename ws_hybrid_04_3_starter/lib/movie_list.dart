@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'http_helper.dart';
 import 'movie_detail.dart';
-import 'movie.dart';
 
 class MovieList extends StatefulWidget {
   @override
@@ -9,31 +8,31 @@ class MovieList extends StatefulWidget {
 }
 
 class _MovieListState extends State<MovieList> {
+
+  // image 는 iconBase+posterpath. posterpath가 null이면 defaultImage로 노출
   final String iconBase = 'https://image.tmdb.org/t/p/w92/';
   final String defaultImage =
       'https://images.freeimages.com/images/large-previews/5eb/movie-clapboard-1184339.jpg';
 
+  late String result;
   late HttpHelper helper;
   int moviesCount = 0;
   List movies = [];
 
   Icon visibleIcon = Icon(Icons.search);
-  Widget searchBar = Text('SSAFY Movie');
+  Widget searchBar= Text('SSAFY Movie');
 
   Future initialize() async {
-    movies = await helper.getUpcoming();
-    setState(() {
-      moviesCount = movies.length;
-      this.movies = movies;
-    });
-  }
+    var movieList = [];
 
-  Future searchMovies(String keyword) async {
-    List searchResults = await helper.searchMovies(keyword);
-    setState(() {
-      moviesCount = searchResults.length;
-      this.movies = searchResults;
-    });
+    //HttpHelper 클래스의 getUpcoming() 함수를 호출하여 최근 영화 정보를 가져오고 setState로 갱신
+    // 구현 ------------------------
+    // movieList =
+
+
+
+
+
   }
 
   @override
@@ -46,12 +45,11 @@ class _MovieListState extends State<MovieList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: searchBar,
+        appBar: AppBar(title: searchBar,
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
             actions: <Widget>[
               IconButton(
-                icon: visibleIcon,
+                  icon: visibleIcon,
                 onPressed: () {
                   setState(() {
                     if (this.visibleIcon.icon == Icons.search) {
@@ -60,55 +58,43 @@ class _MovieListState extends State<MovieList> {
                         textInputAction: TextInputAction.search,
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 20.0,
-                        ),
+                          fontSize: 20.0, ),
                         onSubmitted: (String text) {
-                          searchMovies(text);
+                            // 상단 검색 엔터면 title로 검색.
+
+
+
                         },
-                        autofocus: true,
-                        decoration: InputDecoration(
-                          hintText: '영화 제목 검색',
-                          hintStyle: TextStyle(color: Colors.white60),
-                          border: InputBorder.none,
-                        ),
                       );
-                    } else {
+                    }
+                    else {
                       setState(() {
                         this.visibleIcon = Icon(Icons.search);
-                        this.searchBar = Text('SSAFY Movie');
-                        initialize(); // 검색 취소 시 최신 영화 목록으로 복구
+                        this.searchBar= Text('Movies');
                       });
                     }
                   });
                 },
+
               ),
             ]),
-        body: ListView.builder(
+        body: ListView.builder (
             itemCount: this.moviesCount,
             itemBuilder: (BuildContext context, int position) {
-              Movie movie = this.movies[position];
-              String imageUrl = movie.posterPath != null
-                  ? iconBase + movie.posterPath!
-                  : defaultImage;
               return Card(
                   color: Colors.white,
                   elevation: 2.0,
+                  //ListTile에 CircleAvatar, Text(title), Text(개봉시기, 관객 평점), onTap에는 상세 페이지 이동 구현
                   child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage(imageUrl),
-                    ),
-                    title: Text(movie.title),
-                    subtitle:
-                    Text('개봉: ${movie.releaseDate}  평점: ${movie.voteAverage}'),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MovieDetail(movie),
-                        ),
-                      );
-                    },
+                    //리스트에 보여지는 코드를 구현하세요 ~~~~
+
+
+
+
+
                   ));
-            }));
+            })
+    );
   }
+
 }

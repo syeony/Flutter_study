@@ -9,13 +9,6 @@ class TextFieldPage2 extends StatefulWidget {
 
 class _TextFieldPage2State extends State<TextFieldPage2> {
 
-  TextEditingController controller = TextEditingController();
-
-  @override
-  void dispose(){
-    controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +34,6 @@ class _TextFieldPage2State extends State<TextFieldPage2> {
                 height: 10,
               ),
               TextField(
-                controller: controller,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),   // 외각선
                   labelText: '여기에 입력하세요',
@@ -50,10 +42,6 @@ class _TextFieldPage2State extends State<TextFieldPage2> {
               SizedBox(
                 height: 10,
               ),
-              ElevatedButton(onPressed: (){
-                debugPrint("입력된 값 : ${controller.text}");
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("${controller.text}")));
-              }, child: Text("확인"))
 
             ],
           ),
