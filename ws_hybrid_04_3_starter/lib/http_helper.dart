@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'movie.dart';
 
 class HttpHelper {
-  final String urlKey = 'api_key=2eed1f95acf4ecc4c9420d227a6abbbc';
+  final String urlKey = 'api_key=[api키]';
   final String urlBase = 'https://api.themoviedb.org/3/movie';
   final String urlUpcoming = '/upcoming?';
   final String urlLanguage = '&language=ko-KR';
   final String urlSearchBase =
-      'https://api.themoviedb.org/3/search/movie?api_key=2eed1f95acf4ecc4c9420d227a6abbbc&query=';
+      'https://api.themoviedb.org/3/search/movie?api_key=[api키]&query=';
 
   Future<List> getUpcoming() async {
     final String upcoming = urlBase + urlUpcoming + urlKey + urlLanguage;
