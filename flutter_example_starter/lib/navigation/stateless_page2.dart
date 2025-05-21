@@ -17,7 +17,7 @@ class FirstPage2 extends StatelessWidget {
       ),
       body: ElevatedButton(
         child: Text('다음 페이지로'),
-        onPressed: () async {
+        onPressed: () async { //비동기 값 전달 : async, await
           final person = Person2('홍길동', 20);
           final result = await Navigator.push(
             context,
@@ -38,7 +38,7 @@ class SecondPage2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('SecondPage2 build()');
+    print('SecondPage2 build()${person.name}');
     return Scaffold(
       appBar: AppBar(
         title: Text(person.name),
